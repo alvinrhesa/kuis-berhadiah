@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Lucu Buat Kamu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(135deg, #ffe4ec, #fffbe6);
+      margin: 0;
+      padding: 30px;
+      text-align: center;
+      color: #333;
+    }
+    .card {
+      max-width: 600px;
+      background-color: #fff;
+      margin: 0 auto;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 2rem;
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .question {
+      margin-bottom: 25px;
+    }
+    button {
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 15px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      margin: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff69b4;
+      color: white;
+    }
+    #result {
+      display: none;
+      font-size: 1.3rem;
+      margin-top: 30px;
+      background-color: #ffe4ec;
+      padding: 20px;
+      border-radius: 20px;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    .popup-content img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Kuis Random Buat Rakyat Damarwulan</h1>
+    <p>Jangan asal jawab 😠</p>
+
+    <div class="question" id="q1">
+      <p><strong>1. Kalau kamu lagi sakit, orang ini bakal...</strong></p>
+      <button onclick="nextQuestion('q1')">Bikin ramuan ajaib pake doa</button><br>
+      <button onclick="nextQuestion('q1')">Ngomel kayak ibu-ibu</button><br>
+      <button onclick="nextQuestion('q1')">Ngirimin vt tiktok</button><br>
+      <button onclick="nextQuestion('q1')">Ngasih semangat lewat chat</button>
+    </div>
+
+    <div class="question" id="q2" style="display:none">
+      <p><strong>2. Kalau kamu lagi bosen, dia kemungkinan besar...</strong></p>
+      <button onclick="nextQuestion('q2')">Ngajak main kuis absurd</button><br>
+      <button onclick="nextQuestion('q2')">Kirim chat gak penting</button><br>
+      <button onclick="nextQuestion('q2')">Stalking Pak Jokowi</button><br>
+      <button onclick="nextQuestion('q2')">Berdoa kamu cepat sembuh</button>
+    </div>
+
+    <div class="question" id="q3" style="display:none">
+      <p><strong>3. Ciri-ciri orang ini...</strong></p>
+      <button onclick="nextQuestion('q3')">Bikin kamu senyum sendiri</button><br>
+      <button onclick="nextQuestion('q3')">Pura-pura cuek</button><br>
+      <button onclick="nextQuestion('q3')">Selalu inget kamu</button><br>
+      <button onclick="nextQuestion('q3')">Ngirim kuis ini</button>
+    </div>
+
+    <div class="question" id="q4" style="display:none">
+      <p><strong>4. Orang ini kemungkinan besar adalah...</strong></p>
+      <button onclick="showResult()">Idol Korea</button><br>
+      <button onclick="showResult()">Tukang jamu</button><br>
+      <button onclick="showResult()">Preman pasar</button><br>
+      <button onclick="showResult()">Anak kwagean yang super ramah hehehehe</button>
+    </div>
+
+    <div id="result">
+      <p><strong>✨ Diagnosa Tambahan ✨</strong></p>
+      
+      <p>Yang baik-baik memang kadang diuji... Tapi insya Allah cepat sembuh ya bestii!!</p>
+      <button onclick="showPopup()">Klik Disini Cepettttttt</button>
+      <p style="margin-top: 20px;">Lekas membaik loh jangan lupa 😠</p>
+    </div>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3hmaWE3Zjh3dWo3ZXYybGRlejM2aDJoNTNjMXQ4bWszZTA2ZDluaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xUNda7aUyBu3NnWcmY/giphy.gif" alt="cepat sembuh">
+      <p><strong>Jalan jalan ke Damarwulan.. Jalannya gelap tak beraturan (nanti isi sendiri ya aku ga bisa bikin pantun 😭)</strong></p>
+      <button onclick="hidePopup()">🦖</button>
+    </div>
+  </div>
+
+  <script>
+    function nextQuestion(currentId) {
+      document.getElementById(currentId).style.display = "none";
+      const next = {
+        q1: 'q2',
+        q2: 'q3',
+        q3: 'q4'
+      };
+      document.getElementById(next[currentId]).style.display = "block";
+    }
+
+    function showResult() {
+      document.getElementById("q4").style.display = "none";
+      document.getElementById("result").style.display = "block";
+    }
+
+    function showPopup() {
+      document.getElementById("popup").style.display = "flex";
+    }
+
+    function hidePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+</html>
